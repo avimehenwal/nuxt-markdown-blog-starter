@@ -17,6 +17,7 @@
         "localization",
         "release",
         "vscode",
-        "nuxt"
+        "nuxt",
+        "layout"
     ]
 }
