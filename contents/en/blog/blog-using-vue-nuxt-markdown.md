@@ -11,6 +11,8 @@ description: |
 
 ## Why did I re-do my website with Nuxt?
 
+<img src="https://picsum.photos/510/300?random" alt="image" width="100%" />
+
 Although some of you already know me, I am [Marina Aísa](https://twitter.com/MarinaAisa), UX Engineer (design and front-end) and I currently work at [Holaluz](https://www.holaluz.com/en).
 
 Last year, 2018, I was very focused on learning more about JavaScript, which was a pending subject and at the same time I learnt [Vue.js](https://vuejs.org/). Meanwhile at my workplace, we started using [Nuxt.js](https://nuxtjs.org/) a framework on VueJS to remake both company's static and dynamic (SPA) webapps into components and create a design system with it.
@@ -39,7 +41,7 @@ import blogsEs from '~/contents/es/blogsEs.js'
 
 async asyncData ({app}) {
   const blogs = app.i18n.locale === 'en' ? blogsEn : blogsEs
-  
+
   async function asyncImport (blogName) {
     const wholeMD = await import(`~/content/${app.i18n.locale}/blog/${blogName}.md`)
     return wholeMD.attributes
