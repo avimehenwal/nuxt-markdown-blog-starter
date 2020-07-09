@@ -120,10 +120,11 @@ module.exports = {
     '~/plugins/globalComponents',
     { src: '~plugins/ga.js', ssr: false }
   ],
-  modules: [
+  buildModules: [
     '@nuxtjs/style-resources',
     ['nuxt-i18n', I18N],
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/vuetify',
   ],
 
   styleResources: {
