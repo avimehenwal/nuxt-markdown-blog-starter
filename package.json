@@ -1,11 +1,18 @@
 {
-  "name": "nuxt-markdown-blog-starter",
+  "name": "portfolio",
   "version": "1.0.0",
-  "author": "marinaaisa <marina@marinaaisa.com>",
+  "author": "avimehenwal <avimehenwal.in>",
+  "repository": "https://github.com/avimehenwal/portfolio",
+  "description": "This is the showcase of my public work",
   "private": true,
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.0.0"
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "generate": "nuxt generate",
+    "analyze": "nuxt build --analyze"
   },
   "dependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
@@ -17,12 +24,8 @@
     "nuxt-webfontloader": "^1.1.0",
     "vue-lazyload": "^1.3.3"
   },
-  "scripts": {
-    "dev": "nuxt",
-    "generate": "nuxt generate",
-    "analyze": "nuxt build --analyze"
-  },
   "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.2",
     "frontmatter-markdown-loader": "^3.1.0",
     "node-sass": "^4.13.0",
     "responsive-loader": "^1.2.0",
