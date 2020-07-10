@@ -55,94 +55,93 @@
 </template>
 
 <script lang="js">
+import DynamicMarkdown from "~/components/Markdown/DynamicMarkdown.vue"
 
-  import DynamicMarkdown from "~/components/Markdown/DynamicMarkdown.vue"
-
-
-  export default {
-
-    async asyncData ({params, app}) {
-      const fileContent = await import(`~/contents/${app.i18n.locale}/blog/${params.slug}.md`)
-      const attr = fileContent.attributes
-      return {
-        name: params.slug,
-        title: attr.title,
-        trans: attr.trans,
-        year: attr.year,
-        id: attr.id,
-        cardAlt: attr.cardAlt,
-        noMainImage: attr.noMainImage,
-        description: attr.description,
-        extraComponent: attr.extraComponent,
-        renderFunc: `(${fileContent.vue.render})`,
-        staticRenderFuncs: `[${fileContent.vue.staticRenderFns}]`,
-        image: {
-          main: attr.image && attr.image.main,
-          og: attr.image && attr.image.og
-        }
-      }
-    },
-
-    nuxtI18n: {
-      seo: false
-    },
-
-    components: { DynamicMarkdown},
-
-    head () {
-      return {
-        title: this.pageTitle,
-        htmlAttrs: {
-          lang: this.$i18n.locale,
-        },
-        meta: [
-          { name: "author", content: "Marina Aisa" },
-          { name: "description", property: "og:description", content: this.description, hid: "description" },
-          { property: "og:title", content: this.pageTitle },
-          { property: "og:image", content: this.ogImage },
-          { name: "twitter:description", content: this.description },
-          { name: "twitter:image", content: this.ogImage }
-        ],
-        link: [
-          this.hreflang
-        ]
-      };
-    },
-
-    transition: {
-      name: 'slide-fade'
-    },
-
-    computed: {
-      ogImage () {
-        return `${process.env.baseUrl}/images/blog/${this.id}/_thumbnail.jpg`;
-      },
-      pageTitle () {
-        return this.title + ' – Marina Aisa';
-      },
-      showLocales () {
-        return this.$i18n.locales.filter(locale => locale.code !== this.$i18n.locale)
-      },
-      hreflang () {
-        if (!this.trans) {
-          return ''
-        }
-        return {
-          hid: 'alternate-hreflang-' + this.showLocales[0].iso,
-          rel: 'alternate',
-          href: `${process.env.baseUrl + (this.showLocales[0].code === 'en' ? '' : '/es')}/blog/${this.trans}`,
-          hreflang: this.showLocales[0].code
-        }
-      },
-
-      extraComponentLoader () {
-        if (!this.extraComponent) {
-          return null
-        }
-        return () => import(`~/components/blog/${this.extraComponent}.vue`)
+export default {
+  async asyncData ({params, app}) {
+    const fileContent = await import(`~/contents/${app.i18n.locale}/blog/${params.slug}.md`)
+    const attr = fileContent.attributes
+    return {
+      name: params.slug,
+      title: attr.title,
+      trans: attr.trans,
+      year: attr.year,
+      id: attr.id,
+      cardAlt: attr.cardAlt,
+      noMainImage: attr.noMainImage,
+      description: attr.description,
+      extraComponent: attr.extraComponent,
+      renderFunc: `(${fileContent.vue.render})`,
+      staticRenderFuncs: `[${fileContent.vue.staticRenderFns}]`,
+      image: {
+        main: attr.image && attr.image.main,
+        og: attr.image && attr.image.og
       }
     }
+  },
+
+  nuxtI18n: {
+    seo: false
+  },
+
+  components: {
+    DynamicMarkdown
+  },
+
+  head () {
+    return {
+      title: this.pageTitle,
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+      meta: [
+        { name: "author", content: "Marina Aisa" },
+        { name: "description", property: "og:description", content: this.description, hid: "description" },
+        { property: "og:title", content: this.pageTitle },
+        { property: "og:image", content: this.ogImage },
+        { name: "twitter:description", content: this.description },
+        { name: "twitter:image", content: this.ogImage }
+      ],
+      link: [
+        this.hreflang
+      ]
+    };
+  },
+
+  transition: {
+    name: 'slide-fade'
+  },
+
+  computed: {
+    ogImage () {
+      return `${process.env.baseUrl}/images/blog/${this.id}/_thumbnail.jpg`;
+    },
+    pageTitle () {
+      return this.title + ' – Marina Aisa';
+    },
+    showLocales () {
+      return this.$i18n.locales.filter(locale => locale.code !== this.$i18n.locale)
+    },
+    hreflang () {
+      if (!this.trans) {
+        return ''
+      }
+      return {
+        hid: 'alternate-hreflang-' + this.showLocales[0].iso,
+        rel: 'alternate',
+        href: `${process.env.baseUrl + (this.showLocales[0].code === 'en' ? '' : '/es')}/blog/${this.trans}`,
+        hreflang: this.showLocales[0].code
+      }
+    },
+
+    extraComponentLoader () {
+      if (!this.extraComponent) {
+        return null
+      }
+      return () => import(`~/components/blog/${this.extraComponent}.vue`)
+    }
   }
+}
 </script>
 
 <style lang="scss">

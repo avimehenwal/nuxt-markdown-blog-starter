@@ -27,6 +27,7 @@ const productionUrl = {
 const baseUrl = 'https://aviportfolio.netlify.app/';
 
 module.exports = {
+  components: true,
   env: {
     baseUrl,
     productionUrl
@@ -120,10 +121,11 @@ module.exports = {
     '~/plugins/globalComponents',
     { src: '~plugins/ga.js', ssr: false }
   ],
-  buildModules: [
+  modules: [
     '@nuxtjs/style-resources',
     ['nuxt-i18n', I18N],
     'nuxt-webfontloader',
+    '@nuxt/components',
     // '@nuxtjs/vuetify',
   ],
 

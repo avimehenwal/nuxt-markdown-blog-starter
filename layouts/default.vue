@@ -4,6 +4,7 @@
     <Footer/>
   </div>
 </template>
+
 <script>
   import Footer from '~/components/Sections/Footer'
 
@@ -13,6 +14,7 @@
     }
   }
 </script>
+
 <style lang="scss">
 .layout {
   display: flex;
